@@ -18,18 +18,18 @@ export default function CSGPage() {
       return date.toLocaleString('en-US', { 
         timeZone: 'Asia/Kolkata',
         dateStyle: 'full',
-        timeStyle: 'long'
+        timeStyle: 'short'
       });
     };
 
     const fetchData = async () => {
       try {
-        const res = await fetch('https://api.github.com/repos/vercel/next.js');
+        const res = await fetch('https://api.github.com/repos/Munaf-Divan/nextjs-boilerplate');
         const jsonData = await res.json();
         setData({
           stargazers_count: jsonData.stargazers_count,
           forks_count: jsonData.forks_count,
-          lastUpdated: formatToIST(new Date(jsonData.updated_at)),
+          lastUpdated: formatToIST(new Date(jsonData.pushed_at)),
         });
       } catch (err) {
         setError('Failed to fetch data');

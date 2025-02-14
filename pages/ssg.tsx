@@ -1,14 +1,14 @@
 import { GetStaticProps } from 'next';
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js');
+  const res = await fetch('https://api.github.com/repos/Munaf-Divan/nextjs-boilerplate');
   const data = await res.json();
   
   const formatToIST = (date: Date) => {
     return date.toLocaleString('en-US', { 
       timeZone: 'Asia/Kolkata',
       dateStyle: 'full',
-      timeStyle: 'long'
+      timeStyle: 'medium'
     });
   };
   
@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
       data: {
         stargazers_count: data.stargazers_count,
         forks_count: data.forks_count,
-        lastUpdated: formatToIST(new Date(data.updated_at)),
+        lastUpdated: formatToIST(new Date(data.pushed_at)),
       },
       generatedAt: formatToIST(new Date()),
     },
